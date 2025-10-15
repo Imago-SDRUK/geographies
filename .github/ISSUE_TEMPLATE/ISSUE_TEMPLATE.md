@@ -4,6 +4,7 @@ about: Request to upload a dataset to the repository
 title: "[Data Upload] "
 labels: data-request
 assignees: ''
+project: 'RSE Team'
 ---
 
 **Dataset Information**
