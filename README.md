@@ -14,3 +14,11 @@ This repository contains the source datasets used by product teams in the IMAGO 
 |               |                 |                  |                   |                     |                                                                                                   |              |                  |
 
 
+## 🙋 License
+
+This repository uses a dual-licensing approach:
+
+- **MIT License** for all software code (see [LICENSE](LICENSE))
+- **Creative Commons Attribution 4.0 International (CC BY 4.0)** for documentation, data, and non-code content
+
+See the [LICENSE](LICENSE) file for full details.
