@@ -8,13 +8,13 @@ This repository contains the source datasets used by product teams in the IMAGO 
 
 ## List of Data
 
-| Dataset Name | Dataset Version | Description / Abstract | Geographic Level | Geographic Coverage | Temporal Coverage | Update Frequency | Data Source|
-|---------------|-----------------|------------------------|------------------|--------------------|-------------------|-----------------|-------------|
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
-|               |                 |                        |                  |                    |                   |                 |             |
+| Dataset Name | Dataset Version | Description | Geographic Level | Geographic Coverage | Temporal Coverage | Update Frequency | Data Source|
+|---------------|-----------------|------------|------------------|--------------------|-------------------|-----------------|-------------|
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
+|               |                 |            |                  |                    |                   |                 |             |
 
