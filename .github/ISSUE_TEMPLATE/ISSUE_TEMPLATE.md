@@ -1,27 +1,34 @@
 ---
-name: Bug Report
-about: Create a report to help us improve
-title: "[Bug] "
-labels: bug
+name: Data Upload Request
+about: Request to upload a dataset to the repository
+title: "[Data Upload] "
+labels: data-request
 assignees: ''
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Dataset Information**
 
-**To Reproduce**
-Steps to reproduce the behavior:
+- **Dataset Name**:  
+  *Enter the official name of the dataset.*
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+- **Dataset Version**:  
+  *Enter the dataset version or release date.*
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+- **Description**:  
+  *Briefly describe the dataset and its purpose.*
 
-**Environment (please complete the following information):**
- - OS: [e.g. MacOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+- **Geographic Level**:  
+  *Specify the spatial resolution (e.g., Grid, LSOA, County).*
 
-**Additional context**
-Add any other context about the problem here.
+- **Geographic Coverage**:  
+  *Specify the area covered (e.g., UK, England only).*
+
+- **Data Source**:  
+  *Provide the original source of the dataset (e.g., ONS Census 2021).*
+
+- **Script File Name**:  
+  *If applicable, provide the name of any script used to process the dataset.*
+
+**Additional Context / Notes**  
+*Add any extra information or context about the dataset here (optional).*  
+
