@@ -32,3 +32,13 @@ This repository uses a dual-licensing approach:
 - **Creative Commons Attribution 4.0 International (CC BY 4.0)** for documentation, data, and non-code content
 
 See the [LICENSE](LICENSE) file for full details.
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
