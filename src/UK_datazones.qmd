@@ -1,0 +1,153 @@
+---
+title: "Merging and Visualising UK Small Area Boundaries"
+format: html
+editor: visual
+---
+
+This script imports three spatial datasets representing small-area geographies for the UK:
+
+-   English and Welsh Lower Layer Super Output Areas (2021)
+
+-   Scottish Data Zones (2022)
+
+-   Northern Ireland Data Zones (2021)
+
+It checks and aligns all coordinate reference systems (CRS) to the **British National Grid (EPSG:27700)**, merges the layers into a single unified boundary dataset, and exports the result to both **Shapefile** and **GeoJSON** formats.
+
+# Load necessary libraries
+
+```{r}
+library(sf)
+library(dplyr)
+library(mapview)
+library(ggplot2)
+library(tmap)
+```
+
+# 1 Geo boundaries for UK
+
+## a. England & Wales
+
+Lower layer Super Output Areas (LSOA) boundaries
+Date published: 2021
+
+Downloaded from: https://geoportal.statistics.gov.uk/datasets/68515293204e43ca8ab56fa13ae8a547_0/explore
+
+Lower layer Super Output Areas (December 2021) Boundaries EW BGC (V5) - 20 m generalised clipped
+
+```{r}
+# Read the England & Wales shapefile
+england_wales_2021 <- st_read(
+  "./data/geo/lsoa/lower_layer_Super_Output_Areas_December_2021_Boundaries_EW_BGC_V5_4492169359079898015/LSOA_2021_EW_BGC_V5.shp"
+)
+
+# Keep only selected columns and add new ones
+england_wales_2021 <- england_wales_2021 %>%
+  select(LSOA21CD, LSOA21NM, geometry) %>% # keep only these columns
+  mutate(
+    country = "England & Wales", # new column for country
+    data_zone_code = if_else(!is.na(LSOA21CD), LSOA21CD, NA_character_)  # conditional new column
+  )
+
+```
+
+## b. Northern Ireland
+
+Data Zone boundaries 
+Date published: 21 February 2023
+
+Downloaded from: https://www.nisra.gov.uk/publications/data-zone-boundaries-gis-format
+
+```{r}
+northernireland_2021 <- st_read("./data/geo/lsoa/geography-dz2021-esri-shapefile/DZ2021.shp")
+
+# Keep only selected columns and add new ones
+northernireland_2021 <- northernireland_2021 %>%
+  select(DZ2021_cd, DZ2021_nm, geometry) %>% # keep only these columns
+  mutate(
+    country = "Northern Ireland", # new column for country
+    data_zone_code = if_else(!is.na(DZ2021_cd), DZ2021_cd, NA_character_)  # conditional new column
+  )
+```
+
+There are 3,780 Data Zones (DZ2021) across Northern Ireland, which nest within the 850 Super Data Zones (SDZ2021). These in turn nest within the 80 District Electoral Areas (DEA2014) and 11 Local Government Districts (LGD2014).
+
+The criteria used in the definition of the 2021 Data Zones followed the same principles as for previous small-area geographies, and were:
+
+-   That they be built up from xxx Census Output Areas;
+
+-   Maintain approximately equal resident populations of 200 to 1,400 people
+
+-   Be a continuous area, without multiple extents, unless separation is caused by water (for example, where a Data Zone includes islands);
+
+-   Maintain a compact and locally recognisable shape, representing cohesive neighbourhoods or communities.
+
+## c. Scotland
+
+Data Zone boundaries 
+Date published: 2022
+
+Downloaded from: https://spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/f6656adf-b720-4612-ad5c-1d13eae94c8b
+
+```{r}
+scotland_2022 <- st_read("./data/geo/lsoa/SG_DataZoneBdry_2022/SG_DataZone_Bdry_2022.shp")
+
+# Keep only selected columns and add new ones
+scotland_2022 <- scotland_2022 %>%
+  select(dzcode, dzname, totpop2022, hhcnt2022, geometry) %>% # keep only these columns
+  mutate(
+    country = "Scotland", # new column for country
+    data_zone_code = if_else(!is.na(dzcode), dzcode, NA_character_)  # conditional new column
+  )
+```
+
+Data Zones using 2022 Census data, there are now 7,392 Data Zones covering the whole of Scotland. The criteria used in the definition of 2022 Data Zones followed the same as 2011, and were:
+
+• That they be built up from 2022 Census Output Areas;
+
+• Maintain approximately equal resident populations of 500 to 1,000 people, with an absolute minimum of 375 people and a maximum population of 1,125;
+
+• Be a continuous area without multiple extents (based on the Extent of the Realm coastline), unless caused by water (e.g. Data Zones including islands);
+
+• Where appropriate, changes from 2011 occur within Intermediate Zone boundaries;
+
+• Maintain a compactness of shape.
+
+# 2. Check the CRS of each
+
+```{r}
+st_crs(england_wales_2021)
+st_crs(northernireland_2021)
+st_crs(scotland_2022)
+```
+
+# 3. Ensure all are in British National Grid (EPSG:27700)
+
+# If not, transform them
+
+```{r}
+northernireland_2021 <- st_transform(northernireland_2021, 27700)
+# note that Northern Ireland usually uses Ireland National grid
+```
+
+# 4. Merge all three into one sf object
+
+```{r}
+merged_sf <- bind_rows(england_wales_2021, scotland_2022, northernireland_2021)
+
+merged_sf <- merged_sf %>%
+  select(data_zone_code, country, everything())
+```
+
+# Quick visuals to check
+
+```{r}
+ggplot() +
+  geom_sf(data = merged_sf, aes(fill = country), color = "black") +
+  theme_minimal() 
+```
+
+
+# 5. Export merged data to Shapefile and GeoJSON
+
+st_write(merged_sf, "lsoa/merged_output/merged_boundaries.shp", delete_dsn = TRUE) st_write(merged_sf, "lsoa/merged_output/merged_boundaries.geojson", delete_dsn = TRUE)
