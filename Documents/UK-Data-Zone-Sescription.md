@@ -1,0 +1,3 @@
+# UK Data Zone
+## Description
+The final dataset is a unified spatial layer of UK small-area boundaries, combining: Lower Layer Super Output Areas (2021) for England and Wales , Data Zones (2022) for Scotland & Data Zones (2021) for Northern Ireland Each feature includes its unique area code, name, and associated country, with all geometries aligned to the British National Grid (EPSG:27700). This dataset provides consistent, comparable small-area geographies across the entire United Kingdom for mapping and spatial analysis.
