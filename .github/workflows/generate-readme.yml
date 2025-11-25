@@ -4,22 +4,31 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write   # <-- give write permission to push
+
 jobs:
   replace-secrets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Replace secrets in Markdown
         run: |
           sed -i "s|{{GRID_URL}}|$GRID_URL|g" README.md
           sed -i "s|{{DATAZONES_URL}}|$DATAZONES_URL|g" README.md
+        env:
+          GRID_URL: ${{ secrets.GRID_URL }}
+          DATAZONES_URL: ${{ secrets.DATAZONES_URL }}
+
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
           git commit -m "Update download links from secrets" || echo "No changes"
-          git push
-    env:
-      GRID_URL: ${{ secrets.GRID_URL }}
-      DATAZONES_URL: ${{ secrets.DATAZONES_URL }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
