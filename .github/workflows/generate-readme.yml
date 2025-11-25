@@ -1,0 +1,27 @@
+name: Generate README from template
+
+on:
+  push:
+    paths:
+      - README.template.md
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render README
+        run: |
+          sed \
+            -e "s|{{GRID_URL}}|${{ secrets.GRID_URL }}|g" \
+            -e "s|{{DATAZONES_URL}}|${{ secrets.DATAZONES_URL }}|g" \
+            README.template.md > README.md
+
+      - name: Commit generated README
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Generate README from template"
+          file_pattern: README.md
