@@ -1,27 +1,25 @@
-name: Generate README from template
+name: Build Markdown
 
 on:
   push:
-    paths:
-      - README.template.md
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
-  build:
+  replace-secrets:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Render README
+      - uses: actions/checkout@v3
+      - name: Replace secrets in Markdown
         run: |
-          sed \
-            -e "s|{{GRID_URL}}|${{ secrets.GRID_URL }}|g" \
-            -e "s|{{DATAZONES_URL}}|${{ secrets.DATAZONES_URL }}|g" \
-            README.template.md > README.md
-
-      - name: Commit generated README
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Generate README from template"
-          file_pattern: README.md
+          sed -i "s|{{GRID_URL}}|$GRID_URL|g" README.md
+          sed -i "s|{{DATAZONES_URL}}|$DATAZONES_URL|g" README.md
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update download links from secrets" || echo "No changes"
+          git push
+    env:
+      GRID_URL: ${{ secrets.GRID_URL }}
+      DATAZONES_URL: ${{ secrets.DATAZONES_URL }}
