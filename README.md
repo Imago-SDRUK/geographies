@@ -10,8 +10,8 @@ This repository contains the source datasets used by product teams in the IMAGO 
 
 | Dataset Name  | Dataset Version | Description      | Geographic Level | Geographic Coverage  | Data Source                                                                                       | Code         | Download         |
 |---------------|-----------------|------------------|-------------------|---------------------|---------------------------------------------------------------------------------------------------|--------------|------------------|
-| Grid          |2021             | GB National Grid | 20 km             |GB                   | [Ordnance Survey](https://github.com/OrdnanceSurvey/OS-British-National-Grids?tab=readme-ov-file) |[Link](https://github.com/Imago-SDRUK/geographies/blob/main/src/GB.Grid.20km.py)      |[Link]({{GRID_URL}})|
-|UK Data Zones |2021                 |[Small-area boundaries](https://github.com/Imago-SDRUK/geographies/tree/main/Documents/UK-Data-Zone-Sescription.md)                  |-------              |GB  |ONS Census 2021, North Ireland Statistics and Research Agency 2021, Scottish Government 2022|[Link](https://github.com/Imago-SDRUK/geographies/blob/main/src/UK_datazones.qmd)            |[Link]({{DATAZONES_URL}})|
+| Grid          |2021             | GB National Grid | 20 km             |GB                   | [Ordnance Survey](https://github.com/OrdnanceSurvey/OS-British-National-Grids?tab=readme-ov-file) |[Link](https://github.com/Imago-SDRUK/geographies/blob/main/src/GB.Grid.20km.py)      |[Link]()|
+|UK Data Zones |2021                 |[Small-area boundaries](https://github.com/Imago-SDRUK/geographies/tree/main/Documents/UK-Data-Zone-Sescription.md)                  |-------              |GB  |ONS Census 2021, North Ireland Statistics and Research Agency 2021, Scottish Government 2022|[Link](https://github.com/Imago-SDRUK/geographies/blob/main/src/UK_datazones.qmd)            |[Link]()|
 
 
 ## 📖 Instruction
