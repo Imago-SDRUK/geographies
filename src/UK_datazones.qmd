@@ -150,4 +150,4 @@ ggplot() +
 
 # 5. Export merged data to Shapefile and GeoJSON
 
-st_write(merged_sf, "lsoa/merged_output/merged_boundaries.shp", delete_dsn = TRUE) st_write(merged_sf, "lsoa/merged_output/merged_boundaries.geojson", delete_dsn = TRUE)
+st_write(merged_sf, "lsoa/merged_output/merged_boundaries.gpkg", delete_dsn = TRUE) st_write(merged_sf, "lsoa/merged_output/merged_boundaries.geojson", delete_dsn = TRUE)
