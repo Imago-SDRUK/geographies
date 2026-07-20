@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+#data
+data/
+data/processed/holyrood_2026.gpkg
+data/processed/scottish_parliament_2026.gpkg
+data/processed/senedd_2026.gpkg
+data/processed/westminster_2024.gpkg
+data/raw/Westminster_Parliamentary_Constituencies_July_2024_Boundaries_UK_BFC_-1420043245393085943.gpkg
