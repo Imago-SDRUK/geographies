@@ -120,5 +120,5 @@ dim(UK_MSOA_IZB_SDZ)
 # -----------------------------
 # 6. Save
 # -----------------------------
-st_write(UK_MSOA_IZB_SDZ, "/Users/martinapardy/Desktop/Liverpool/imago/data/geographies/UK_MSOA_IZB_SDZ/UK_MSOA_IZB_SDZ.gpkg", delete_dsn = TRUE)
+st_write(UK_MSOA_IZB_SDZ, file.path(data_dir, "UK_MSOA_IZB_SDZ", "UK_MSOA_IZB_SDZ.gpkg"), delete_dsn = TRUE)
 
